@@ -3,6 +3,7 @@ package com.cognizant.uspsshipmentservice.controller;
 import com.cognizant.uspsshipmentservice.dao.ShipmentDao;
 import com.cognizant.uspsshipmentservice.exception.NotFoundException;
 import com.cognizant.uspsshipmentservice.model.Shipment;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,8 @@ public class ShipmentController {
         Shipment shipment = shipmentDao.getShipmentByTrackingNumber(trackingNumber);
 
         if (shipment == null)
-            return null;
+            throw new NotFoundException("Shipment with tracking number " + trackingNumber + " could not be found.");
+//            return null;
 
         return shipment;
     }
