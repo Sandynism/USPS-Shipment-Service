@@ -2,21 +2,21 @@ package com.cognizant.clientservice.model;
 
 import java.util.Objects;
 
-public class Shipment {
+public class ShipmentViewModel {
     private Integer shipmentId;
     private String customerName;
     private Integer trackingNumber;
 
-    public Shipment() {
+    public ShipmentViewModel() {
     }
 
-    public Shipment(Integer shipmentId, String customerName, Integer trackingNumber) {
+    public ShipmentViewModel(Integer shipmentId, String customerName, Integer trackingNumber) {
         this.shipmentId = shipmentId;
         this.customerName = customerName;
         this.trackingNumber = trackingNumber;
     }
 
-    public Shipment(String customerName, Integer trackingNumber) {
+    public ShipmentViewModel(String customerName, Integer trackingNumber) {
         this.customerName = customerName;
         this.trackingNumber = trackingNumber;
     }
@@ -48,11 +48,11 @@ public class Shipment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Shipment shipment = (Shipment) o;
-        return Objects.equals(getShipmentId(), shipment.getShipmentId()) &&
-                Objects.equals(getCustomerName(), shipment.getCustomerName()) &&
-                Objects.equals(getTrackingNumber(), shipment.getTrackingNumber());
+        if (!(o instanceof ShipmentViewModel)) return false;
+        ShipmentViewModel that = (ShipmentViewModel) o;
+        return Objects.equals(getShipmentId(), that.getShipmentId()) &&
+                Objects.equals(getCustomerName(), that.getCustomerName()) &&
+                Objects.equals(getTrackingNumber(), that.getTrackingNumber());
     }
 
     @Override
