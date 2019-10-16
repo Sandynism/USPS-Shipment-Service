@@ -24,7 +24,7 @@ public class ShipmentController {
         Shipment shipment = shipmentDao.getShipmentByTrackingNumber(trackingNumber);
 
         if (shipment == null)
-            throw new NotFoundException("Shipment with tracking number " + trackingNumber + " could not be found.");
+            return null;
 
         return shipment;
     }

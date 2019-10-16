@@ -47,7 +47,11 @@ public class ShipmentDaoJdbcTemplateImpl implements ShipmentDao {
 
     @Override
     public Shipment getShipmentByTrackingNumber(Integer trackingNumber) {
-        return jdbcTemplate.queryForObject(SELECT_SHIPMENT_BY_TRACKING_NUMBER_SQL, this::mapRowToShipment, trackingNumber);
+        try {
+            return jdbcTemplate.queryForObject(SELECT_SHIPMENT_BY_TRACKING_NUMBER_SQL, this::mapRowToShipment, trackingNumber);
+        }catch (EmptyResultDataAccessException | NullPointerException e) {
+            return null;
+        }
     }
 
 
